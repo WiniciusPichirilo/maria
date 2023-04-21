@@ -1,16 +1,24 @@
-#your main file.
+# Maria
 
-import speech_recognition as sr 
+from vosk import Model, KaldiRecognizer
 
-#cria um reconhecedor 
-r = sr.Recognizer ()
+import os
+import pyaudio 
 
-#abrir o microfone para cptura 
-with sr.Microphone () as source:
- 
- while True:
 
-    audio = r.listen(source) #define microfone como fonte de audio
+model = Model("model")
+rec = KaldiRecognizer(model, 16000)
 
- 
-    print(r.recognize_google(audio, language= 'pt'))
+p = pyaudio.PyAudio()
+stream = p.open(format=payaudio.paInt16, channels=1 rate=16000, input=true, frames_per_buffer=8000)
+stream.start_stream()
+while True:
+    data = stream.read(4000)
+    if lem(data) == 0:
+        break
+    if rec.Acceptwaveform(data):
+         print (rec.Result())
+    else:
+        print(rec.Result())
+
+print (rec.FinalResult())
