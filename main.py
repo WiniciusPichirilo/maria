@@ -1,20 +1,21 @@
 # Maria
 
-from vosk import Model, KaldiRecognizer
+from vosk import model, KaldiRecognizer
 
 import os
 import pyaudio 
 
 
-model = Model("model")
+model = model("model")
 rec = KaldiRecognizer(model, 16000)
 
 p = pyaudio.PyAudio()
-stream = p.open(format=payaudio.paInt16, channels=1 rate=16000, input=true, frames_per_buffer=8000)
+
+stream = p.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=8000)
 stream.start_stream()
 while True:
     data = stream.read(4000)
-    if lem(data) == 0:
+    if len(data) == 0:
         break
     if rec.Acceptwaveform(data):
          print (rec.Result())
